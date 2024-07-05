@@ -1,7 +1,7 @@
 services: 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ./start_server.sh
     volumes:
       - .:/code
     environment:
@@ -10,20 +10,20 @@ services:
     ports:
       - "8000:8000"
 
-  # grafana:
-  #   image: grafana/grafana
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - grafana_data:/var/lib/grafana
-  #     - ./grafana/provisioning/:/etc/grafana/provisioning/
-  #   restart: always
-
+  jaeger:
+    image: jaegertracing/all-in-one:1.58
+    ports:
+      - "16686:16686"
+      - "4318:4318"
+      - "6831:6831"
+      - "4317:4317"
+    environment:
+      - LOG_LEVEL=debug
+  
   prometheus:
     image: prom/prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      # - prom/prometheus
     command: 
       - '--config.file=/etc/prometheus/prometheus.yml'
     ports:

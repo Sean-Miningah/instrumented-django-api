@@ -1,24 +1,16 @@
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
+from opentelemetry import trace
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 
 from todo.models import Todo
 
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import (
-    BatchSpanProcessor,
-    ConsoleSpanExporter,
-)
+tracer = trace.get_tracer(__name__)
 
-trace.set_tracer_provider(TracerProvider())
-
-trace.get_tracer_provider().add_span_processor(
-    BatchSpanProcessor(ConsoleSpanExporter())
-)
-
+@tracer.start_as_current_span("get-to-do's")
 def home(request: HttpRequest) -> HttpResponse:
   
+  # with trace.
   todos = Todo.objects.all()
   
   return TemplateResponse(
