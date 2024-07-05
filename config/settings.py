@@ -127,4 +127,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-PROMETHEUS_METRIC_NAMESPACE = "todo_app"
+PROMETHEUS_METRIC_NAMESPACE = "todo_app_metrics"
