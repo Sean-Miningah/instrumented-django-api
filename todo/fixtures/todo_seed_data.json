@@ -1,0 +1,92 @@
+[
+  {
+    "model": "todo.todo",
+    "pk": 1,
+    "fields": {
+      "title": "Buy groceries",
+      "text": "Remember to buy milk, eggs, and bread.",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 2,
+    "fields": {
+      "title": "Read a book",
+      "text": "Read 'The Great Gatsby'.",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 3,
+    "fields": {
+      "title": "Write code",
+      "text": "Finish the project by Friday.",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 4,
+    "fields": {
+      "title": "Exercise",
+      "text": "Do a 30-minute run.",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 5,
+    "fields": {
+      "title": "Cook dinner",
+      "text": "Cook pasta for dinner.",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 6,
+    "fields": {
+      "title": "Learn Django",
+      "text": "Complete the Django tutorial.",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 7,
+    "fields": {
+      "title": "Go for a walk",
+      "text": "Take a 30-minute walk in the park.",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 8,
+    "fields": {
+      "title": "Call a friend",
+      "text": "Call John and catch up.",
+      "is_completed": true
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 9,
+    "fields": {
+      "title": "Watch a movie",
+      "text": "Watch 'Inception' on Netflix.",
+      "is_completed": false
+    }
+  },
+  {
+    "model": "todo.todo",
+    "pk": 10,
+    "fields": {
+      "title": "Plan vacation",
+      "text": "Plan the itinerary for the summer trip.",
+      "is_completed": true
+    }
+  }
+]

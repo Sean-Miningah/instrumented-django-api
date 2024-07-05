@@ -1,0 +1,12 @@
+{% extends "base.html"%}
+{% block content %}
+
+<div class="container page">
+  <div class="list-group">
+    {% for todo in todos %}
+      <li class="list-group-item">{{ todo }}</li>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
