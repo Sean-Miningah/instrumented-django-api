@@ -9,6 +9,13 @@ services:
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
     ports:
       - "8000:8000"
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
 
   jaeger:
     image: jaegertracing/all-in-one:1.58

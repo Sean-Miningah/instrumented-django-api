@@ -7,7 +7,7 @@ from todo.models import Todo
 
 tracer = trace.get_tracer(__name__)
 
-@tracer.start_as_current_span("get-to-do's")
+@tracer.start_as_current_span("get-to-dos")
 def home(request: HttpRequest) -> HttpResponse:
   
   # with trace.
@@ -20,4 +20,5 @@ def home(request: HttpRequest) -> HttpResponse:
       "todos": todos
     },
   )
+
   

@@ -13,6 +13,8 @@ from opentelemetry.sdk.trace.export import (
     BatchSpanProcessor,
 )
 
+from django.conf import settings
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
@@ -25,7 +27,8 @@ def main():
 
     traceProvider = TracerProvider(resource=resource)
     
-    processor = BatchSpanProcessor(OTLPSpanExporter(endpoint="http://jaeger:4317"))
+    TRACING_EXPORTER_ENDPOINT = os.environ.get('JAEGER_ENDPOINT', 'http://127.0.0.1:4317')
+    processor = BatchSpanProcessor(OTLPSpanExporter(endpoint=TRACING_EXPORTER_ENDPOINT))
     traceProvider.add_span_processor(processor)
     trace.set_tracer_provider(traceProvider)
     
