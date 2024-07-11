@@ -5,33 +5,13 @@ import os
 import sys
 
 from opentelemetry.instrumentation.django import DjangoInstrumentor
-from opentelemetry.sdk.resources import SERVICE_NAME, Resource
-from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import (
-    BatchSpanProcessor,
-)
 
-from django.conf import settings
 
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-
+    
     DjangoInstrumentor().instrument()
-    
-    resource = Resource(attributes={
-        SERVICE_NAME: "todo-application"
-    })
-
-    traceProvider = TracerProvider(resource=resource)
-    
-    TRACING_EXPORTER_ENDPOINT = os.environ.get('JAEGER_ENDPOINT', 'http://127.0.0.1:4317')
-    processor = BatchSpanProcessor(OTLPSpanExporter(endpoint=TRACING_EXPORTER_ENDPOINT))
-    traceProvider.add_span_processor(processor)
-    trace.set_tracer_provider(traceProvider)
-    
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -7,8 +7,21 @@ services:
     environment:
       - OTEL_SERVICE_NAME=todo-app
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
+      - JAEGER_ENDPOINT=http://jaeger:4317/
     ports:
       - "8000:8000"
+
+  celery:
+    build: .
+    command: celery --app=config worker --loglevel=info --logfile=logs/celery.log
+    volumes: 
+      - .:/code 
+    environment:
+      - OTEL_SERVICE_NAME=todo-app
+      - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
+      - JAEGER_ENDPOINT=http://jaeger:4317/
   
   rabbitmq:
     image: rabbitmq:3-management

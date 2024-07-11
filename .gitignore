@@ -3,3 +3,6 @@
 .venv
 ./venv/
 venv
+
+db.sqlite3
+logs/

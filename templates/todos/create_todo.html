@@ -1,0 +1,21 @@
+<!-- templates/todo_form.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container page">
+  <h2>Create a New Todo</h2>
+  <form method="post" action="{% url 'create-todo' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="title" class="form-label">Title:</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea id="description" name="description" required class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Todo</button>
+  </form>
+  
+</div
+{% endblock content %}

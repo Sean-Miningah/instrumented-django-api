@@ -4,9 +4,15 @@
 <div class="container page">
   <div class="list-group">
     {% for todo in todos %}
-      <li class="list-group-item">{{ todo }}</li>
+      <li class="list-group-item">
+        {{ todo.title }} - {{ todo.text }}
+      </li>
     {% endfor %}
   </div>
+
+  <div style="padding: 10px 20px;">
+    <a href="{% url 'create-todo' %}" class="btn btn-primary">Create Todo</button>
+  <div>
 </div>
 
 {% endblock content %}
