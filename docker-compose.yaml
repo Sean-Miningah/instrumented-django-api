@@ -1,7 +1,7 @@
 services: 
   web:
     build: .
-    command: ./start_server.sh
+    command: gunicorn --config gunicorn.config.py --workers=4 --bind 0.0.0.0:8000 config.wsgi:application
     volumes:
       - .:/code
     environment:
@@ -9,6 +9,7 @@ services:
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
       - JAEGER_ENDPOINT=http://jaeger:4317/
+      - OTEL_LOGS_EXPORTER=otlp
     ports:
       - "8000:8000"
 

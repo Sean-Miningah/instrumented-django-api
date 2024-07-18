@@ -1,10 +1,9 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import  redirect
 from django.template.response import TemplateResponse
 from django.http import HttpRequest, HttpResponse
+from time import sleep
 
-from opentelemetry import trace
 from opentelemetry.trace.propagation.tracecontext import TraceContextTextMapPropagator
-from opentelemetry.baggage.propagation import W3CBaggagePropagator
 
 from todo.models import Todo
 from todo.task import task_created_alert
@@ -32,7 +31,7 @@ def create_todo(request: HttpRequest) -> HttpResponse:
     carrier = {}
     TraceContextTextMapPropagator().inject(carrier) 
     task_created_alert.delay(title=created_todo.title, headers=carrier)
-    
+    sleep(5)
     return redirect('home')
   
   return TemplateResponse(
